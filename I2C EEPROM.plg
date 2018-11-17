@@ -1,0 +1,254 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\8051 USB Programmer\I2C CODE\I2C EEPROM.uvproj
+Project File Date:  11/17/2018
+
+<h2>Output:</h2>
+compiling I2C EEPROM MAIN.c...
+delay.h(5): warning C235: parameter 1: different types
+I2C EEPROM MAIN.c(9): warning C290: missing return value
+I2C EEPROM MAIN.c - 0 Error(s), 2 Warning(s).
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c(9): warning C290: missing return value
+I2C EEPROM MAIN.c - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling delay.c...
+compiling i2c.c...
+defines.h(3): warning C318: can't open file 'i2c_defines.h'
+i2c.c(7): error C202: 'SDA': undefined identifier
+i2c.c(8): error C202: 'SCL': undefined identifier
+i2c.c(9): error C202: 'SDA': undefined identifier
+i2c.c(17): error C202: 'SCL': undefined identifier
+i2c.c(18): error C202: 'SDA': undefined identifier
+i2c.c(19): error C202: 'SCL': undefined identifier
+i2c.c(25): error C202: 'SCL': undefined identifier
+i2c.c(26): error C202: 'SDA': undefined identifier
+i2c.c(27): error C202: 'SCL': undefined identifier
+i2c.c(28): error C202: 'SDA': undefined identifier
+i2c.c(32): error C202: 'SCL': undefined identifier
+i2c.c(33): error C202: 'SDA': undefined identifier
+i2c.c(34): error C202: 'SCL': undefined identifier
+i2c.c(35): error C202: 'SDA': undefined identifier
+i2c.c(39): error C202: 'SCL': undefined identifier
+i2c.c(40): error C202: 'SDA': undefined identifier
+i2c.c(41): error C202: 'SCL': undefined identifier
+i2c.c(42): error C202: 'SDA': undefined identifier
+i2c.c(47): error C202: 'SCL': undefined identifier
+i2c.c(48): error C202: 'SDA': undefined identifier
+i2c.c(49): error C202: 'SCL': undefined identifier
+i2c.c(54): error C202: 'SCL': undefined identifier
+i2c.c(55): error C202: 'SDA': undefined identifier
+i2c.c(56): error C202: 'SCL': undefined identifier
+i2c.c(57): error C202: 'SCL': undefined identifier
+i2c.c(58): error C202: 'SDA': undefined identifier
+i2c.c(67): error C202: 'SCL': undefined identifier
+i2c.c(68): error C202: 'SCL': undefined identifier
+i2c.c(69): error C202: 'SDA': undefined identifier
+Target not created
+compiling i2c.c...
+i2c.c - 0 Error(s), 0 Warning(s).
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c(9): warning C290: missing return value
+I2C EEPROM MAIN.c - 0 Error(s), 1 Warning(s).
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c(9): warning C290: missing return value
+I2C EEPROM MAIN.c - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVREAD?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=22.0 xdata=0 code=495
+"I2C EEPROM" - 0 Error(s), 5 Warning(s).
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c(10): warning C206: 'i2cDevRead': missing function-prototype
+I2C EEPROM MAIN.c(10): error C267: 'i2cDevRead': requires ANSI-style prototype
+I2C EEPROM MAIN.c - 1 Error(s), 1 Warning(s).
+compiling i2c.c...
+i2c.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c(10): warning C206: 'i2cDevRead': missing function-prototype
+I2C EEPROM MAIN.c(10): error C267: 'i2cDevRead': requires ANSI-style prototype
+Target not created
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=24.0 xdata=0 code=517
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=24.0 xdata=0 code=517
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=24.0 xdata=0 code=517
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=24.0 xdata=0 code=517
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=24.0 xdata=0 code=517
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=24.0 xdata=0 code=517
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c(8): warning C280: 't': unreferenced local variable
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVREAD?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=23.0 xdata=0 code=505
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+I2C EEPROM MAIN.c(8): warning C280: 't': unreferenced local variable
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVREAD?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=23.0 xdata=0 code=505
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=24.0 xdata=0 code=517
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=23.0 xdata=0 code=520
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=23.0 xdata=0 code=520
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling I2C EEPROM MAIN.c...
+compiling delay.c...
+compiling i2c.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEWRITE?I2C
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CDEVPAGEREAD?I2C
+Program Size: data=23.0 xdata=0 code=529
+creating hex file from "I2C EEPROM"...
+"I2C EEPROM" - 0 Error(s), 3 Warning(s).
