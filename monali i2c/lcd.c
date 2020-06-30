@@ -1,0 +1,81 @@
+#include <reg51.h>
+#include "lcd.h"
+
+unsigned char custom_char[]= {0x00,0x04,0x0E,0x04,0x15,0x0E,0x04,0x00, 
+	                      0x00,0x04,0x0E,0x0E,0x0E,0x1F,0x04,0x00, 
+	                      0x00,0x0A,0x15,0x11,0x11,0x0A,0x04,0x00,
+												0x0E,0x11,0x11,0x1F,0x1B,0x1B,0x1B,0x1F,
+	                      0x0E,0x11,0x10,0x1F,0x1B,0x1B,0x1B,0x1F,
+												0x00,0x0E,0x15,0x1B,0x0E,0x0E,0x00,0x00,
+	                      };
+
+
+void lcd_init(void)
+{
+	lcd_cmd(0x38); // initialize lcd to 16*2 with 5*7 pixel
+	lcd_cmd(0x0c); //Display on Cursor off
+	lcd_cmd(0x01); //Clear Display (also clear DDRAM content)
+	lcd_cmd(0x80); //Set DDRAM address or coursor position on display
+}
+
+void lcd_cmd(char ch)
+{
+	LCD = ch;
+	rs=0;
+	en=1;
+	delay_ms(1);
+	en=0;
+}
+
+void lcd_display(char ch)
+{
+	LCD = ch;
+	rs=1;
+	en=1;
+	delay_ms(1);
+	en=0;
+}
+
+void lcd_string (char *ptr)
+{
+	while(*ptr)
+	{
+		lcd_display(*ptr++);
+	}
+}
+
+void lcd_custom(void)
+{
+	int i;
+	lcd_cmd(0x40);
+	for(i=0;i<48;i++)
+	lcd_display(custom_char[i]);
+	lcd_cmd(0x80);
+}
+
+void lcd_int(int num)
+{
+	int i=0,temp;
+	char arr[7],remi;
+	temp=num;
+	while(temp>0)
+	{
+		remi = temp%10;
+		arr[i] = remi+48;
+		temp = temp/10;
+		i++;
+	}
+	i--;
+	if(num<10)
+		lcd_display('0');
+	if(num==0)
+		lcd_display('0');
+		
+	while(i>=0)
+	{
+		
+		lcd_display(arr[i]);
+		i--;
+	}
+	
+}

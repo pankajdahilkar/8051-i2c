@@ -1,0 +1,5 @@
+".\Objects\lcdmain.obj",
+".\Objects\main.obj" 
+TO ".\Objects\lcd_interface" 
+
+PRINT(".\Listings\lcd_interface.map")

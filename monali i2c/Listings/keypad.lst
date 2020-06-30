@@ -1,0 +1,108 @@
+C51 COMPILER V9.60.0.0   KEYPAD                                                            06/30/2020 19:58:47 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KEYPAD
+OBJECT MODULE PLACED IN .\Objects\keypad.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE keypad.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ke
+                    -ypad.lst) TABS(2) OBJECT(.\Objects\keypad.obj)
+
+line level    source
+
+   1           #include<reg51.h>
+   2           #include "delay.h"
+   3           #define keypd P1
+   4           sbit c0=keypd^4;
+   5           sbit c1=keypd^5;
+   6           sbit c2=keypd^6;
+   7           sbit c3=keypd^7;
+   8           sbit r0=keypd^0;
+   9           sbit r1=keypd^1;
+  10           sbit r2=keypd^2;
+  11           sbit r3=keypd^3;
+  12          
+  13          char row_val,col_val; //
+  14          code char a[4][4]={{'0','1','2','3'},
+  15                            {'4','5','6','7'},
+  16                            {'8','9','A','B'},
+  17                            {'C','D','E','F'}};
+  18           
+  19           void Row_Init(void)
+  20           {
+  21   1       r0=r1=r2=r3=0;
+  22   1       }
+  23          
+  24           char Colstatus(void)
+  25           {
+  26   1       return(c0&&c1&&c2&&c3);
+  27   1       }
+  28          
+  29           char keyscan (void)
+  30           {
+  31   1       
+  32   1       while(Colstatus());
+  33   1      
+  34   1         
+  35   1       r0=0;
+  36   1         r1=r2=r3=1;
+  37   1         //delay_ms(10);
+  38   1       if(!Colstatus())
+  39   1       {
+  40   2       row_val=0;
+  41   2       goto colcheck;
+  42   2       }
+  43   1      
+  44   1       r1=0;
+  45   1       r0=r2=r3=1;
+  46   1      //  delay_ms(10);
+  47   1       if(!Colstatus())
+  48   1       {
+  49   2       row_val=1;
+  50   2       goto colcheck;
+  51   2       }
+  52   1      
+  53   1       r2=0;
+  54   1       r0=r1=r3=1;
+C51 COMPILER V9.60.0.0   KEYPAD                                                            06/30/2020 19:58:47 PAGE 2   
+
+  55   1       // delay_ms(10);
+  56   1       if(!Colstatus())
+  57   1       {
+  58   2       row_val=2;
+  59   2       goto colcheck;
+  60   2       }
+  61   1      
+  62   1         r3=0;
+  63   1       r0=r1=r2=1;
+  64   1       // delay_ms(10);
+  65   1       if(!Colstatus())
+  66   1       {
+  67   2       row_val=3;
+  68   2       }
+  69   1      
+  70   1      colcheck:
+  71   1            if(c0==0)
+  72   1          col_val=0;
+  73   1          else if(c1==0)
+  74   1          col_val=1;
+  75   1          else if(c2==0)
+  76   1          col_val=2;
+  77   1          else
+  78   1          col_val=3;
+  79   1      
+  80   1          while(!Colstatus());
+  81   1          return(a[row_val][col_val]);
+  82   1          }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    186    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

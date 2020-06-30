@@ -1,0 +1,127 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              06/30/2020 19:58:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "i2c.h"
+   3          #include "delay.h"
+   4          #include "types.h"
+   5          #include "RTC.h"
+   6          #include "serial.h"
+   7          #include "stdlib.h"
+   8          #include "lcd.h"
+*** WARNING C235 IN LINE 8 OF lcd.h: parameter 1: different types
+   9          #include "keypad.h"
+  10          sbit led = P2^2;
+  11          
+  12          void main()
+  13          {
+  14   1        u8 key1;
+  15   1        u8 addr = 0x66;
+  16   1        u8 data_c = 0;
+  17   1        u8 byte_data = 45;
+  18   1        u8 bcd_data  ;
+  19   1        u8 name[10];
+  20   1        u8 Date_1[3];
+  21   1        u8 Time_1[3];
+  22   1         init_UART();
+  23   1         lcd_init();
+  24   1         lcd_cmd(0x01);
+  25   1         lcd_cmd(0x80);
+  26   1        lcd_string(" WELCOM ");
+  27   1        lcd_cmd(0xc0);
+  28   1        lcd_string(" TO CLOCK ");
+  29   1        delay_ms(100);
+  30   1        RTC_Set_Time(18,04,55);
+  31   1        RTC_Set_Date(26,06,20);
+  32   1        send_string("Time = \0");
+  33   1        set_alarm(18,05);
+  34   1        
+  35   1        
+  36   1        while(1)
+  37   1        {
+  38   2          //led =0;
+  39   2          Row_Init();
+  40   2         key1=keyscan();
+  41   2          lcd_cmd(0x01);
+  42   2          lcd_cmd(0x80);
+  43   2         lcd_display(key1);
+  44   2        //  delay_ms(100);
+  45   2        /*
+  46   2          RTC_Read_Time(Time_1);
+  47   2        RTC_Read_Date(Date_1);
+  48   2          send_string("Time = \0");
+  49   2          Tx_int(Time_1[0]);
+  50   2          Tx_CHAR(':');
+  51   2          Tx_int(Time_1[1]);
+  52   2          Tx_CHAR(':');
+  53   2          Tx_int(Time_1[2]);
+C51 COMPILER V9.60.0.0   MAIN                                                              06/30/2020 19:58:46 PAGE 2   
+
+  54   2          Tx_CHAR(' ');
+  55   2          send_string("Date = \0");
+  56   2          Tx_int(Date_1[0]);
+  57   2          Tx_CHAR('-');
+  58   2          Tx_int(Date_1[1]);
+  59   2          Tx_CHAR('-');
+  60   2          Tx_int(Date_1[2]);
+  61   2          Tx_CHAR('\r');
+  62   2          Tx_CHAR('\n');
+  63   2          lcd_cmd(0x01);
+  64   2          lcd_cmd(0x80);
+  65   2          lcd_string("Time=");
+  66   2          lcd_int(Time_1[0]);
+  67   2          lcd_display(':');
+  68   2          lcd_int(Time_1[1]);
+  69   2          lcd_display(':');
+  70   2          lcd_int(Time_1[2]);
+  71   2          
+  72   2          lcd_cmd(0xc0);
+  73   2          lcd_string("Date=");
+  74   2          lcd_int(Date_1[0]);
+  75   2          lcd_display('-');
+  76   2          lcd_int(Date_1[1]);
+  77   2          lcd_display('-');
+  78   2          lcd_int(Date_1[2]+2000);
+  79   2            delay_ms(100);
+  80   2        if(check_alarm(Time_1[0],Time_1[1]))
+  81   2        {
+  82   2          led=1;
+  83   2          lcd_cmd(0x01);
+  84   2          lcd_cmd(0x80);
+  85   2        lcd_string("Alarm Time :");
+  86   2        delay_ms(500);
+  87   2        }
+  88   2        else
+  89   2          led=0;
+  90   2            
+  91   2          delay_ms(400);
+  92   2          //led =1;
+  93   2        //  delay_ms(400);
+  94   2        */
+  95   2        }
+  96   1      }
+*** WARNING C280 IN LINE 18 OF main.c: 'bcd_data': unreferenced local variable
+*** WARNING C280 IN LINE 19 OF main.c: 'name': unreferenced local variable
+*** WARNING C280 IN LINE 20 OF main.c: 'Date_1': unreferenced local variable
+*** WARNING C280 IN LINE 21 OF main.c: 'Time_1': unreferenced local variable
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    114    ----
+   CONSTANT SIZE    =     29    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      21
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  5 WARNING(S),  0 ERROR(S)

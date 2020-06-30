@@ -1,9 +1,9 @@
-C51 COMPILER V9.54   I2C                                                                   11/17/2018 22:12:50 PAGE 1   
+C51 COMPILER V9.60.0.0   I2C                                                               06/25/2020 19:04:06 PAGE 1   
 
 
-C51 COMPILER V9.54, COMPILATION OF MODULE I2C
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE I2C
 OBJECT MODULE PLACED IN i2c.OBJ
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE i2c.c BROWSE DEBUG OBJECTEXTEND
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE i2c.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
 
 line level    source
 
@@ -14,187 +14,152 @@ line level    source
    5          #include "i2c.h"
    6          void i2cStart(void)
    7          {
-   8   1      SDA =1;
-   9   1      SCL=1;
-  10   1      SDA=0;
+   8   1        SDA =1;
+   9   1        SCL=1;
+  10   1        SDA=0;
   11   1      }
-  12          
-  13          void i2cWrite(u8 d)
-  14          {
-  15   1      u8 i;
-  16   1      for(i=0;i<8;i++)
-  17   1      {
-  18   2      SCL =0;
-  19   2      SDA = d&(0x80>>i)?1:0;
-  20   2      SCL=1;
-  21   2      }
-  22   1      }
-  23          
-  24          void i2cAck(void)
-  25          {
-  26   1      SCL=0;
-  27   1      SDA=1;
-  28   1      SCL=1;
-  29   1      while(SDA);
-  30   1      }
-  31          void i2cStop(void)
-  32          {
-  33   1      SCL=0;
-  34   1      SDA=0;
-  35   1      SCL=1;
-  36   1      SDA=1;
-  37   1      }
-  38          void i2cRestart(void)
+  12          void i2cStop(void)
+  13          {
+  14   1        SCL=0;
+  15   1        SDA=0;
+  16   1        SCL=1;
+  17   1        SDA=1;
+  18   1      }
+  19          void i2cRestart(void)
+  20          {
+  21   1        SCL=0;
+  22   1        SDA=1;
+  23   1        SCL=1;
+  24   1        SDA=0;
+  25   1      }
+  26          
+  27          void i2cWrite(u8 d)
+  28          {
+  29   1        u8 i;
+  30   1        for(i=0;i<8;i++)
+  31   1        {
+  32   2        SCL =0;
+  33   2        SDA = d&(0x80>>i)?1:0;
+  34   2        SCL=1;
+  35   2        }
+  36   1      }
+  37          
+  38          void i2cAck(void)
   39          {
-  40   1      SCL=0;
-  41   1      SDA=1;
-  42   1      SCL=1;
-  43   1      SDA=0;
+  40   1        SCL=0;
+  41   1        SDA=1;
+  42   1        SCL=1;
+  43   1        while(SDA);
   44   1      }
   45          
-  46          void i2cNoAck(void)
-  47          {
-  48   1      SCL=0;
-  49   1      SDA=1;
-  50   1      SCL=1;
-  51   1      }
-  52          
-  53          void i2cMasterAck(void)
-  54          {
-  55   1      SCL=0;
-C51 COMPILER V9.54   I2C                                                                   11/17/2018 22:12:50 PAGE 2   
+  46          
+  47          void i2cNoAck(void)
+  48          {
+  49   1        SCL=0;
+  50   1        SDA=1;
+  51   1        SCL=1;
+  52   1      }
+  53          
+  54          void i2cMasterAck(void)
+  55          {
+C51 COMPILER V9.60.0.0   I2C                                                               06/25/2020 19:04:06 PAGE 2   
 
-  56   1      SDA=0;
-  57   1      SCL=1;
-  58   1      SCL=0;
-  59   1      SDA=1;
-  60   1      }
-  61          
-  62          u8 i2cRead(void )
-  63          {
-  64   1       u8 i;
-  65   1       u8 buff=0;
-  66   1       for(i=0;i<8;i++)
-  67   1       {
-  68   2       SCL=0;
-  69   2       SCL=1;
-  70   2       if(SDA) buff |=0x80>>i;
-  71   2       }
-  72   1       return buff;
-  73   1      }
-  74          
-  75          void i2cDevWrite(u8 slaveAddr,u8 buffAddr,u8 dat)
-  76          {
-  77   1      i2cStart();
-  78   1      i2cWrite(slaveAddr);
-  79   1      i2cAck();
-  80   1      i2cWrite(buffAddr);
-  81   1      i2cAck();
-  82   1      i2cWrite(dat);
-  83   1      i2cAck();
-  84   1      i2cStop();
-  85   1      delay_ms(10);
-  86   1      }
-  87          
-  88          u8 i2cDevRead(u8 slaveAddr,u8 buffAddr)
-  89          {
-  90   1              u8 buff;
-  91   1              i2cStart();
-  92   1              i2cWrite(slaveAddr);
-  93   1              i2cAck();
-  94   1              i2cWrite(buffAddr);
-  95   1              i2cAck();
-  96   1              i2cRestart();
-  97   1              i2cWrite(slaveAddr|1);
-  98   1              i2cAck();
-  99   1              buff=i2cRead();
- 100   1              i2cNoAck();
- 101   1              i2cStop();
- 102   1              return buff;
- 103   1              
- 104   1      }
- 105          
- 106          void i2cDevPageWrite(u8 slaveAddr,u8 buffStartAddr,u8 *str,u8 size)
- 107          {
- 108   1              u8 i;
- 109   1              i2cStart();
- 110   1              i2cWrite(slaveAddr);
- 111   1              i2cAck();
- 112   1              i2cWrite(buffStartAddr);
- 113   1              i2cAck();
- 114   1              for(i=0;i<size;i++)
- 115   1              {
- 116   2                      i2cWrite(*str++);
- 117   2                      i2cAck();
-C51 COMPILER V9.54   I2C                                                                   11/17/2018 22:12:50 PAGE 3   
+  56   1        SCL=0;
+  57   1        SDA=0;
+  58   1        SCL=1;
+  59   1        SCL=0;
+  60   1        SDA=1;
+  61   1      }
+  62          
+  63          u8 i2cRead(void )
+  64          {
+  65   1         u8 i;
+  66   1         u8 buff=0;
+  67   1         for(i=0;i<8;i++)
+  68   1         {
+  69   2           SCL=0;
+  70   2           SCL=1;
+  71   2           if(SDA) buff |=0x80>>i;
+  72   2         }
+  73   1         return buff;
+  74   1      }
+  75          
+  76          
+  77          
+  78          void i2cDevWrite(u8 slaveAddr,u8 buffAddr,u8 dat)
+  79          {
+  80   1          i2cStart();
+  81   1          i2cWrite(slaveAddr);
+  82   1          i2cAck();
+  83   1          i2cWrite(buffAddr);
+  84   1          i2cAck();
+  85   1          i2cWrite(dat);
+  86   1          i2cAck();
+  87   1          i2cStop();
+  88   1          delay_ms(10);
+  89   1      }
+  90          
+  91          u8 i2cDevRead(u8 slaveAddr,u8 buffAddr)
+  92          {
+  93   1          u8 buff;
+  94   1          i2cStart();
+  95   1          i2cWrite(slaveAddr);
+  96   1          i2cAck();
+  97   1          i2cWrite(buffAddr);
+  98   1          i2cAck();
+  99   1          i2cRestart();
+ 100   1          i2cWrite(slaveAddr|1);
+ 101   1          i2cAck();
+ 102   1          buff=i2cRead();
+ 103   1          i2cNoAck();
+ 104   1          i2cStop();
+ 105   1          return buff;  
+ 106   1      }
+ 107          
+ 108          void i2cDevPageWrite(u8 slaveAddr,u8 buffStartAddr,u8 *str,u8 size) // "pankaj"
+ 109          {
+ 110   1          u8 i;
+ 111   1          i2cStart();
+ 112   1          i2cWrite(slaveAddr);
+ 113   1          i2cAck();
+ 114   1          i2cWrite(buffStartAddr);
+ 115   1          i2cAck();
+ 116   1          for(i=0;i<size;i++)
+ 117   1          {
+C51 COMPILER V9.60.0.0   I2C                                                               06/25/2020 19:04:06 PAGE 3   
 
- 118   2              }
- 119   1              i2cStop();
- 120   1              delay_ms(10);
- 121   1      }
- 122          
- 123          void i2cDevPageRead(u8 slaveAddr,u8 buffStartAddr,u8 *str,u8 size)
- 124          {
- 125   1              u8 i;
- 126   1              i2cStart();
- 127   1              i2cWrite(slaveAddr);
- 128   1              i2cAck();
- 129   1              i2cWrite(buffStartAddr);
- 130   1              i2cAck();
- 131   1              i2cRestart();
- 132   1              i2cWrite(slaveAddr|1);
- 133   1              i2cAck();
- 134   1              for(i=0;i<size-1;i++)
- 135   1              {
- 136   2                      str[i]=i2cRead();
- 137   2                      i2cMasterAck();
- 138   2              }
- 139   1              str[i++] =i2cRead();
- 140   1              str[i]='\0';
- 141   1              i2cNoAck();
- 142   1              i2cStop();
- 143   1      }
- 144          
- 145          
- 146          
- 147          
- 148          
- 149          
- 150          
- 151          
- 152          
- 153          
- 154          
- 155          
- 156          
- 157          
- 158          
- 159          
- 160          
- 161          
- 162          
- 163          
- 164          
- 165          
- 166          
- 167          
- 168          
- 169          
- 170          
- 171          
- 172          
- 173          
- 174          
- 175          
- 176          
- 177          
- 178          
-
-C51 COMPILER V9.54   I2C                                                                   11/17/2018 22:12:50 PAGE 4   
+ 118   2            i2cWrite(*str++);
+ 119   2            i2cAck();
+ 120   2          }
+ 121   1          i2cStop();
+ 122   1          delay_ms(10);
+ 123   1      }
+ 124          
+ 125          void i2cDevPageRead(u8 slaveAddr,u8 buffStartAddr,u8 *str,u8 size)
+ 126          {
+ 127   1          u8 i;
+ 128   1          i2cStart();
+ 129   1          i2cWrite(slaveAddr);
+ 130   1          i2cAck();
+ 131   1          i2cWrite(buffStartAddr);
+ 132   1          i2cAck();
+ 133   1          i2cRestart();
+ 134   1          i2cWrite(slaveAddr|1);
+ 135   1          i2cAck();
+ 136   1          for(i=0;i<size-1;i++)
+ 137   1          {
+ 138   2            str[i]=i2cRead();
+ 139   2            i2cMasterAck();
+ 140   2          }
+ 141   1          str[i++] =i2cRead();
+ 142   1          str[i]='\0';
+ 143   1          i2cNoAck();
+ 144   1          i2cStop();
+ 145   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    380    ----
+   CODE SIZE        =    397    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

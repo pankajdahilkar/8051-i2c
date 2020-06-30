@@ -1,0 +1,46 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              06/25/2020 20:21:30 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\main.lst) TA
+                    -BS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "lcd.h"
+   3          void main()
+   4          {
+   5   1        lcd_init();
+   6   1        lcd_custom();
+   7   1        lcd_string (" MONALI ");
+   8   1        lcd_cmd(0xc0); //Force cursor to beginning of second line
+   9   1        lcd_string (" KATHANE ");
+  10   1        delay_ms(1000);
+  11   1        lcd_cmd(0x01); //Clear Display (also clear DDRAM content)
+  12   1        lcd_cmd(0x80); //Set DDRAM address or coursor position on display
+  13   1        lcd_string (" BHARAT ELECTRONICS LIMITED ");
+  14   1        lcd_cmd(0xc0); //Force cursor to beginning of second line
+  15   1        lcd_string (" ON LCD 16*2 ");
+  16   1        delay_ms(1000);
+  17   1        while(1);
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     78    ----
+   CONSTANT SIZE    =     62    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,117 @@
+C51 COMPILER V9.60.0.0   RTC                                                               06/30/2020 19:58:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE RTC
+OBJECT MODULE PLACED IN .\Objects\RTC.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE RTC.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\RTC.l
+                    -st) TABS(2) OBJECT(.\Objects\RTC.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "RTC.h"
+   3          #include "types.h"
+   4          #include "i2c.h"
+   5          #define RTC_ADDR 0xD0
+   6          
+   7          u8 hr_alarm, min_alarm;
+   8          
+   9          u8 bcd_to_byte(u8 bcd)
+  10          {
+  11   1        u8 a,b;
+  12   1        a = (bcd>>4);
+  13   1        a  = a * 10;
+  14   1        b = (bcd & 0x0F);
+  15   1        return (a+b);
+  16   1      }
+  17          
+  18          u8 byte_to_bcd(u8 byte)
+  19          {
+  20   1        u8 a,b;
+  21   1        a = byte/10;
+  22   1        b = byte%10;
+  23   1        a = ((a << 4) +b);
+  24   1        return a; 
+  25   1      }
+  26          
+  27          
+  28          void RTC_Set_Time(u8 hrs,u8 min,u8 sec)
+  29          {
+  30   1        u8 hr,m,s;
+  31   1        
+  32   1        hr = byte_to_bcd(hrs);
+  33   1        m = byte_to_bcd(min);
+  34   1        s = byte_to_bcd(sec);
+  35   1        
+  36   1        i2cDevWrite(RTC_ADDR,0x00,s);
+  37   1        i2cDevWrite(RTC_ADDR,0x01,m);
+  38   1        i2cDevWrite(RTC_ADDR,0x02,hr);
+  39   1      }
+  40          
+  41          void RTC_Set_Date(u8 date,u8 month,u8 year)
+  42          {
+  43   1        u8 dt,mnth,yr;
+  44   1        dt = byte_to_bcd(date);
+  45   1        mnth = byte_to_bcd(month);
+  46   1        yr = byte_to_bcd (year);
+  47   1        
+  48   1        i2cDevWrite(RTC_ADDR,0x04,dt);
+  49   1        i2cDevWrite(RTC_ADDR,0x05,mnth);
+  50   1        i2cDevWrite(RTC_ADDR,0x06,yr);
+  51   1      }
+  52          
+  53          void RTC_Read_Time(u8 *Time)
+  54          {
+C51 COMPILER V9.60.0.0   RTC                                                               06/30/2020 19:58:46 PAGE 2   
+
+  55   1        u8 hr,min,sec;
+  56   1        
+  57   1        hr = i2cDevRead(RTC_ADDR,0x02);
+  58   1        min = i2cDevRead(RTC_ADDR,0x01);
+  59   1        sec = i2cDevRead(RTC_ADDR,0x00);
+  60   1        
+  61   1        Time[0] = bcd_to_byte(hr);
+  62   1        Time[1] = bcd_to_byte(min);
+  63   1        Time[2] = bcd_to_byte(sec);
+  64   1      }
+  65          
+  66          
+  67          void RTC_Read_Date(u8 *Date)
+  68          {
+  69   1        u8 dt,mnth,yr;
+  70   1        dt = i2cDevRead(RTC_ADDR,0x04);
+  71   1        mnth = i2cDevRead(RTC_ADDR,0x05);
+  72   1        yr = i2cDevRead(RTC_ADDR,0x06); 
+  73   1        Date[0] = bcd_to_byte(dt);
+  74   1        Date[1] = bcd_to_byte(mnth);
+  75   1        Date[2] = bcd_to_byte(yr);
+  76   1      }
+  77          
+  78          void set_alarm(u8 hr , u8 min)
+  79          {
+  80   1      hr_alarm = hr;
+  81   1      min_alarm = min;  
+  82   1      }
+  83          
+  84          u8 check_alarm(u8 rtc_hr,u8 rtc_min)
+  85          {
+  86   1        if((rtc_hr==hr_alarm)&&(rtc_min==min_alarm))
+  87   1        {
+  88   2          return 1;
+  89   2        }
+  90   1          return 0;
+  91   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    304    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,9 @@
+".\Objects\I2C.obj",
+".\Objects\delay.obj",
+".\Objects\main.obj",
+".\Objects\RTC.obj",
+".\Objects\serial.obj",
+".\Objects\lcd.obj",
+".\Objects\keypad.obj" 
+TO ".\Objects\8051_I2C_LIABRARY" 
+PRINT(".\Listings\8051_I2C_LIABRARY.m51")
